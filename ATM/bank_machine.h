@@ -36,8 +36,8 @@ public:
 					}
 				}
 						)
-					.handle<withdraw>(
-						[&](withdraw const& _msg)
+					.handle<Withdraw>(
+						[&](Withdraw const& _msg)
 				{
 					if (_msg.m_amount <= m_balance)
 					{
@@ -264,7 +264,7 @@ class atm
 				[&](withdraw_pressed const& msg)
 		{
 			m_withdrawal_amount = msg.amount;
-			m_bank.send(withdraw(m_account, msg.amount, m_incoming));
+			m_bank.send(Withdraw(m_account, msg.amount, m_incoming));
 			state = &atm::process_withdrawal;
 		}
 				)
